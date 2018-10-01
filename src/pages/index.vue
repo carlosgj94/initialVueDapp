@@ -11,6 +11,7 @@
       <h3 class="paragraph-title">Get Token Name</h3>
       <div class="row">
         <div>
+          <a class="button is-primary">Button</a> 
           <button @click="getTokenName">Get Name</button>
           <span style="margin-left: 10px">{{ tokenName }}</span>
         </div>
