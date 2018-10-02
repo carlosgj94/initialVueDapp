@@ -2,7 +2,7 @@ import web3 from '~/plugins/web3'
 import EIP20 from '../../build/contracts/EIP20'
 import web3Abi from 'web3-eth-abi'
 
-const tokenAddress = '0x7D42Ac988f0BF2247B808a0784839Aed8D52C461' // insert deployed EIP20 token address here
+const tokenAddress = '0xCccCAd506B6445C9eD85A6E53207880f5d23f350' // insert deployed EIP20 token address here
 const eip20 = new web3.eth.Contract(EIP20.abi, tokenAddress)
 
 let account

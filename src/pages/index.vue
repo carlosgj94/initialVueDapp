@@ -16,6 +16,16 @@
           <span style="margin-left: 10px">{{ tokenName }}</span>
         </div>
       </div>
+
+      <div class="tile is-ancestor">
+        <div class="tile is-6">
+          <card/>
+        </div>
+        <div class="tile is-6">
+          <card/>
+        </div>
+      </div>
+
       <div>
         <h3 class="paragraph-title">Transfer tokens</h3>
         <div class="row">
@@ -28,8 +38,9 @@
           <button @click="transfer">Send</button>
         </div>
         <div class="receipt-box">
-          Receipt:
-          <span style="color:green">{{ transferReceipt }}</span>
+          <b-message type="is-danger">
+            <span style="color:green">{{ transferReceipt }}</span>
+          </b-message>
         </div>
       </div>
     </div>
@@ -38,10 +49,12 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import Card from '~/components/Card.vue'
 
 export default {
   components: {
-    AppLogo
+    AppLogo,
+    Card
   },
   data() {
     return {
