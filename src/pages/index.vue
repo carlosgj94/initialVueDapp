@@ -1,20 +1,14 @@
 <template>
-  <section class="">
-    <div>
-      <top-bar />
-    </div>
+  <section class="has-background-light">
     <nuxt />
   </section>
 </template>
 
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
-import TopBar from '~/components/TopBar.vue'
 
 export default {
-  components: {
-    TopBar
-  },
+  components: {},
   data() {
     return {
       tokenName: '',

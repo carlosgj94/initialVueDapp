@@ -4,7 +4,15 @@
     <nuxt/>
   </div>
 </template>
+<script>
+import TopBar from '~/components/TopBar.vue'
 
+export default {
+  components: {
+    TopBar
+  }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

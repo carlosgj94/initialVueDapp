@@ -1,43 +1,27 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="#">
-        <h1><strong>GovernChain</strong></h1>
-        <!--<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
-      </a>
-
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
-      </a>
+      <span class="navbar-item">
+        <h1><strong>BOX·TO·GO</strong></h1>
+      </span>
+      <!--TODO: HAMBURGER-->
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <nuxt-link class="navbar-item" to="/home">
-          Current_Campaigns
-        </nuxt-link>
-
-        <a class="navbar-item">
-          <nuxt-link class="button is-primary" to="/create">New Campaign</nuxt-link>
-        </a>
-
-        <a class="navbar-item">
-          Documentation
-        </a>
-
-      </div>
-
+    <div id="navbarSections" class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <nuxt-link class="button is-primary" to="/profile">
-              <strong>Profile</strong>
-            </nuxt-link>
-          </div>
+          <nuxt-link to="/packbox">
+            My_Packages
+          </nuxt-link>
         </div>
+
+        <a class="navbar-item">
+          <nuxt-link class="button is-primary" to="/create">
+            New package
+          </nuxt-link>
+        </a>
       </div>
+
     </div>
   </nav>
 </template>
