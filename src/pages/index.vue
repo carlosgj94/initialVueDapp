@@ -1,6 +1,10 @@
 <template>
-  <section class="has-background-light">
-    <nuxt />
+  <section class="hero is-fullheight has-background-light">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title"><strong>BOX·TO·GO</strong></h1>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -29,7 +33,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+/*
 .container {
   min-height: 100vh;
   display: flex;
@@ -40,7 +45,7 @@ export default {
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* 1 */
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
@@ -83,4 +88,5 @@ export default {
     #cceeff 100%
   );
 }
+*/
 </style>

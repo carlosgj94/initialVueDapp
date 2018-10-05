@@ -1,13 +1,14 @@
 <template>
-  <section class="has-background-light">
+  <section class="hero is-fullheight has-background-light">
 
-    <div class="container is-fluid" style="padding: 20px">
+    <div class="container fluid" style="padding: 20px">
       <div class="tile is-ancestor">
         <div v-for="c in counter" :key="c" class="tile is-parent" >
           <article class="tile is-child box has-background-primary">
             <div class="content">
-              <p class="title"> {{ thing.title }} </p>
-              <p class="subtitle"> {{ thing.description }} </p>
+              <p class="title"> {{ pack.name }} {{ c }} </p>
+              <p class="subtitle"><strong>From:</strong> {{ pack.senderName }} </p>
+              <p class="subtitle"><strong>To:</strong> {{ pack.receiverName }} </p>
               <div class="content">
                 <!-- Content -->
               </div>
@@ -27,9 +28,12 @@ export default {
   data() {
     return {
       counter: [1, 2, 3],
-      thing: {
-        title: 'DefaultTitle',
-        description: 'DefaultDescription'
+      pack: {
+        name: 'Package',
+        senderName: 'Me',
+        receiverName: 'You',
+        originAddress: 'Here',
+        destinationAddress: 'There'
       }
     }
   }
