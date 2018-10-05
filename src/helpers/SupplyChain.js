@@ -65,30 +65,51 @@ const SupplyChainHelper = {
         box[4] // final address
       ]
     })
-  }
+  },
 
-  /*
-  voteGuess: function(_guessIndex, _option, ethAmount) { // Option has to be between 1 and 2
+  getPackageData: async index => {
     let self = this
 
-    ethAmount = 10 * (ethAmount / 10)
-    return new Promise((resolve, reject) => {
-      console.log(self.address[0])
-      self.instance
-        .voteGuess(
-          _guessIndex,
-          _option,
-          {from: self.address[0],
-            value: window.web3.utils.toWei(ethAmount.toString(), 'ether'),
-            gas: 6385875} // TODO: Gas forced
-        ).then(() => {
-          resolve()
-        }).catch(err => {
-          reject(err)
-        })
+    await self.instance.getPackageData.call(index).then(box => {
+      return [
+        box[0], // sender address
+        box[1], // receiver address
+        box[2] // transporters address
+      ]
+    })
+  },
+
+  createPackage: async (
+    packageName,
+    senderName,
+    receiverName,
+    originAddress,
+    finalAddress,
+    receiver
+  ) => {
+    let self = this
+
+    await self.instance
+      .createPackage(
+        packageName,
+        senderName,
+        receiverName,
+        originAddress,
+        finalAddress,
+        receiver
+      )
+      .then(box => {
+        return box
+      })
+  },
+
+  addTransporter: async (box, position) => {
+    let self = this
+
+    await self.instance.addTransporter(box, position).then(box => {
+      return box
     })
   }
-  */
 }
 
 export default SupplyChainHelper
