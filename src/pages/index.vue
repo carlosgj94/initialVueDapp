@@ -10,7 +10,6 @@
 
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
-import SupplyChainHelper from '~/helpers/SupplyChain.js'
 
 export default {
   components: {},
@@ -26,8 +25,12 @@ export default {
     this.getAddress()
   },
   methods: {
-    getAddress() {
-      SupplyChainHelper.init()
+    async getAddress() {
+      this.tokenName = await this.$store.dispatch(
+        'supplyChain/getPackageStrings',
+        { index: 0 }
+      )
+      console.log(await this.tokenName)
     }
   }
 }

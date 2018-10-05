@@ -39,7 +39,7 @@
   </section>
 </template>
 <script>
-import SupplyChainHelper from '../helpers/SupplyChain.js'
+// import SupplyChainHelper from '../helpers/SupplyChain.js'
 
 export default {
   components: {},
@@ -55,25 +55,26 @@ export default {
         originAddress: '',
         receiverName: '',
         destinationAddress: '',
-        receiver: ''
+        receiver: '',
+        instance: null,
+        account: null
       }
     }
   },
   methods: {
     async submit() {
       //let self = this
-      var instance = await SupplyChainHelper.init()
-      console.log('Working')
-      var success = await SupplyChainHelper.createPackage(
-        instance,
-        this.form.packageName,
-        this.form.senderName,
-        this.form.receiverName,
-        this.form.originAddress,
-        this.form.destinationAddress,
-        this.form.receiver
+      this.transferReceipt = await this.$store.dispatch(
+        'supplyChain/transfer',
+        {
+          packageName: this.form.packageName,
+          senderName: this.form.senderName,
+          receiverName: this.form.receiverName,
+          originAddress: this.form.originAddress,
+          finalAddress: this.form.destinationAddress,
+          receiver: this.form.receiver
+        }
       )
-      console.log(success + 'Package registered')
     }
   }
 }
