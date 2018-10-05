@@ -1,12 +1,13 @@
-pragma solidity 0.4.24;
+pragma solidity 0.4.25;
 
 
 /**
   @title Partial Lock and Commit Reveal Voting scheme without using tokens
-  @authors: Carlos Gonzalez 
  */
 contract BasicVoteReveal {
     struct Poll {
+        string title;
+        string description;
         string option1;
         string option2;
         uint option1Votes;
@@ -15,16 +16,32 @@ contract BasicVoteReveal {
         uint revealEnding;
         mapping(bytes32 => bool) votes;
         mapping(bytes32 => bool) revealed;
-    };
+    }
 
     Poll[] public polls;
 
-    function getPoll(uint _pollID) 
+    function getPollStrings(uint _pollID) 
     public
     view
     returns(
         string,
         string,
+        string,
+        string
+    )
+    {
+        return (
+            polls[_pollID].title,
+            polls[_pollID].description,
+            polls[_pollID].option1,
+            polls[_pollID].option2
+        );
+    }
+
+    function getPollData(uint _pollID) 
+    public
+    view
+    returns(
         uint,
         uint,
         uint,
@@ -32,8 +49,6 @@ contract BasicVoteReveal {
     )
     {
         return (
-            polls[_pollID].option1,
-            polls[_pollID].option2,
             polls[_pollID].option1Votes,
             polls[_pollID].option2Votes,
             polls[_pollID].commitEnding,
@@ -42,18 +57,22 @@ contract BasicVoteReveal {
     }
 
     function setPoll(
+        string _title,
+        string _description,
         string _option1,
         string _option2,
         uint commitEnding,
         uint revealEnding
     ) public returns (uint) {
         Poll memory _poll = Poll({
+            title: _title,
+            description: _description,
             option1: _option1,
             option2: _option2,
             option1Votes: 0,
             option2Votes: 0,
-            commitEnding: 0,
-            revealEnding: 0
+            commitEnding: commitEnding,
+            revealEnding: revealEnding
         });
 
         polls.push(_poll);
@@ -62,7 +81,7 @@ contract BasicVoteReveal {
     function getCommitHash(
         uint _pollNumber,
         uint _option
-    ) public returns (bytes32) {
+    ) public view returns (bytes32) {
         return keccak256(
             abi.encodePacked(
                 msg.sender,
@@ -77,7 +96,7 @@ contract BasicVoteReveal {
         bytes32 _vote
     ) public returns (bool) {
         if (polls[_pollNumber].commitEnding > now) {
-            polls[_pollNumber].votes[_vote] = vote;
+            polls[_pollNumber].votes[_vote] = true;
             return true;
         } else {
             return false;
@@ -105,6 +124,6 @@ contract BasicVoteReveal {
         } else {
             polls[_pollNumber].option2Votes += 1;
         }
-        polls[_pollNumber].option1Votes 
+        polls[_pollNumber].option1Votes;
     }
 }
