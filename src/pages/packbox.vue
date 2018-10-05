@@ -1,10 +1,10 @@
 <template>
   <section class="hero is-fullheight has-background-light">
 
-    <div class="column is-10 is-offset-1 fluid" style="padding-top: 20px">
-      <div class="tile is-ancestor">
+    <div class="column is-10 is-offset-1 fluid" style="padding-top: 50px">
+      <div v-for="i in counter" :key="i" class="tile is-ancestor">
         <div v-for="c in counter" :key="c" class="tile is-parent" >
-          <article :class="pack.style" class="tile is-child box">
+          <article :class="randomStyle()" class="tile is-child box">
             <div class="content">
               <div class="title has-text-white-bis"> {{ pack.name }} Nº {{ c }} </div>
               <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ pack.senderName }} </span>
@@ -20,7 +20,7 @@
     <b-modal :active.sync="isModalActive">
       <div class="tile is-ancestor">
         <div class="tile is-parent" >
-          <article :class="pack.style" class="tile is-child box">
+          <article :class="randomStyle()" class="tile is-child box">
             <div class="content">
               <div class="title has-text-white-bis"> {{ pack.name }}</div>
               <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ pack.senderName }} </span>
@@ -47,7 +47,7 @@
 export default {
   components: {},
   head: {
-    title: 'Box·To·Go/Package Box'
+    title: 'Fairivery/Package Box'
   },
   data() {
     return {
@@ -74,7 +74,8 @@ export default {
       var randomValue = this.variations[
         Math.floor(Math.random() * this.variations.length)
       ]
-      this.pack.style = 'has-background-' + randomValue
+      self.style = 'has-background-' + randomValue
+      return self.style
     },
     something() {
       console.log('Package recieved')
@@ -82,8 +83,12 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .wrapper {
   padding: 20px;
+}
+.is-vertical-centered {
+  display: flex;
+  align-items: center;
 }
 </style>

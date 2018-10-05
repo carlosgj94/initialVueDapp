@@ -1,7 +1,7 @@
 <template>
   <section class="hero is-fullheight has-background-light">
 
-    <div id="create.form" class="container columns is-fluid widescreen" style="margin-top: 20px">
+    <div id="create.form" class="container columns is-fluid widescreen" style="margin-top: 50px">
       <div class="column is-8 is-offset-2 card-content has-background-white">
         <div class="columns">
           <div class="column is-10 is-offset-1 wrap" style="padding: 20px">
@@ -44,7 +44,7 @@ import SupplyChainHelper from '../helpers/SupplyChain.js'
 export default {
   components: {},
   head: {
-    title: 'BoxToGo/Register Package'
+    title: 'Fairivery/Register Package'
   },
   data() {
     return {
