@@ -1,5 +1,5 @@
-const BasicVoteReveal = artifacts.require('./BasicVoteReveal.sol')
+const SupplyChain = artifacts.require('./SupplyChain.sol')
 
 module.exports = deployer => {
-  deployer.deploy(BasicVoteReveal)
+  deployer.deploy(SupplyChain)
 }
