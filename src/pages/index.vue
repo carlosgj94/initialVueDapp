@@ -1,60 +1,19 @@
 <template>
-  <section class="container">
+  <section class="">
     <div>
-      <app-logo/>
-      <h1 class="title">
-        nuxt-box
-      </h1>
-      <h2 class="subtitle">
-        Truffle box for Nuxt.js development
-      </h2>
-      <h3 class="paragraph-title">Get Token Name</h3>
-      <div class="row">
-        <div>
-          <a class="button is-primary">Button</a> 
-          <button @click="getTokenName">Get Name</button>
-          <span style="margin-left: 10px">{{ tokenName }}</span>
-        </div>
-      </div>
-
-      <div class="tile is-ancestor">
-        <div class="tile is-6">
-          <card/>
-        </div>
-        <div class="tile is-6">
-          <card/>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="paragraph-title">Transfer tokens</h3>
-        <div class="row">
-          Recipent Address: <input v-model="recipentAddress" title="Recipent">
-        </div>
-        <div class="row">
-          Amount: <input v-model="amount" title="Amount">
-        </div>
-        <div class="row">
-          <button @click="transfer">Send</button>
-        </div>
-        <div class="receipt-box">
-          <b-message type="is-danger">
-            <span style="color:green">{{ transferReceipt }}</span>
-          </b-message>
-        </div>
-      </div>
+      <top-bar />
     </div>
+    <nuxt />
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
-import Card from '~/components/Card.vue'
+//import AppLogo from '~/components/AppLogo.vue'
+import TopBar from '~/components/TopBar.vue'
 
 export default {
   components: {
-    AppLogo,
-    Card
+    TopBar
   },
   data() {
     return {

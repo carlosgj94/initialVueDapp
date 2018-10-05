@@ -1,5 +1,6 @@
 <template>
   <div>
+    <top-bar />
     <nuxt/>
   </div>
 </template>
