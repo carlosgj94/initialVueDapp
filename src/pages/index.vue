@@ -1,20 +1,15 @@
 <template>
-  <section class="">
-    <div>
-      <top-bar />
-    </div>
+  <section class="has-background-light">
     <nuxt />
   </section>
 </template>
 
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
-import TopBar from '~/components/TopBar.vue'
+import SupplyChainHelper from '~/helpers/SupplyChain.js'
 
 export default {
-  components: {
-    TopBar
-  },
+  components: {},
   data() {
     return {
       tokenName: '',
@@ -23,15 +18,12 @@ export default {
       amount: 0
     }
   },
+  mounted() {
+    this.getAddress()
+  },
   methods: {
-    async getTokenName() {
-      this.tokenName = await this.$store.dispatch('eip20/getName')
-    },
-    async transfer() {
-      this.transferReceipt = await this.$store.dispatch('eip20/transfer', {
-        to: this.recipentAddress,
-        value: this.amount
-      })
+    async getAddress() {
+      await SupplyChainHelper.init()
     }
   }
 }
