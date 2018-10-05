@@ -4,7 +4,7 @@
     <div class="container is-fluid" style="padding: 20px">
       <div class="tile is-ancestor">
         <div v-for="c in counter" :key="c" class="tile is-parent" >
-          <article class="tile is-child box is-primary">
+          <article class="tile is-child box has-background-primary">
             <div class="content">
               <p class="title"> {{ thing.title }} </p>
               <p class="subtitle"> {{ thing.description }} </p>
