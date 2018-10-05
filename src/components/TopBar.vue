@@ -2,7 +2,8 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <h1><strong>BOX·TO·GO</strong></h1>
+        <b-icon icon="package" size="is-medium" type="is-primary"/>
+        <h1><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
       </span>
       <!--TODO: HAMBURGER-->
     </div>
@@ -10,7 +11,7 @@
     <div id="navbarSections" class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
-          <nuxt-link to="/packbox">
+          <nuxt-link to="/packbox" class="has-text-grey">
             My_Packages
           </nuxt-link>
         </div>

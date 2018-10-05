@@ -2,7 +2,10 @@
   <section class="hero is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title"><strong>BOX·TO·GO</strong></h1>
+        <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
+        <p>
+          <span class="is-primary">// Making the World a Better Place //</span>
+        </p>
       </div>
     </div>
   </section>
