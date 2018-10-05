@@ -26,8 +26,8 @@ export default {
     this.getAddress()
   },
   methods: {
-    async getAddress() {
-      await SupplyChainHelper.init()
+    getAddress() {
+      SupplyChainHelper.init()
     }
   }
 }

@@ -22,17 +22,16 @@ const SupplyChainHelper = {
         .deployed()
         .then(instance => {
           self.instance = instance
+          console.log(self.instance)
 
           // Getting the accounts
           window.web3.eth.getAccounts(function(error, accounts) {
-            // Getting events
-            // self.GuessCreated = self.instance.GuessCreated()
             if (error) {
               console.log(error)
             } else {
               self.address = accounts
               console.log(accounts)
-              resolve()
+              resolve(instance)
             }
           })
         })
@@ -53,10 +52,8 @@ const SupplyChainHelper = {
     })
   },*/
 
-  getPackageStrings: async index => {
-    let self = this
-
-    await self.instance.getPackageStrings.call(index).then(box => {
+  getPackageStrings: async (index, instance) => {
+    await instance.getPackageStrings.call(index).then(box => {
       return [
         box[0], // package name
         box[1], // sender name
@@ -67,10 +64,8 @@ const SupplyChainHelper = {
     })
   },
 
-  getPackageData: async index => {
-    let self = this
-
-    await self.instance.getPackageData.call(index).then(box => {
+  getPackageData: async (index, instance) => {
+    await instance.getPackageData.call(index).then(box => {
       return [
         box[0], // sender address
         box[1], // receiver address
@@ -80,6 +75,7 @@ const SupplyChainHelper = {
   },
 
   createPackage: async (
+    instance,
     packageName,
     senderName,
     receiverName,
@@ -87,9 +83,8 @@ const SupplyChainHelper = {
     finalAddress,
     receiver
   ) => {
-    let self = this
-
-    await self.instance
+    console.log('Inside')
+    instance
       .createPackage(
         packageName,
         senderName,
@@ -103,10 +98,8 @@ const SupplyChainHelper = {
       })
   },
 
-  addTransporter: async (box, position) => {
-    let self = this
-
-    await self.instance.addTransporter(box, position).then(box => {
+  addTransporter: async (instance, box, position) => {
+    await instance.addTransporter(box, position).then(box => {
       return box
     })
   }

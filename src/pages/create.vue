@@ -39,7 +39,7 @@
   </section>
 </template>
 <script>
-import SupplyChainHelper from '~/helpers/SupplyChain.js'
+import SupplyChainHelper from '../helpers/SupplyChain.js'
 
 export default {
   components: {},
@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       form: {
+        supplyHelper: null,
         packageName: '',
         senderName: '',
         originAddress: '',
@@ -60,11 +61,11 @@ export default {
   },
   methods: {
     async submit() {
-      await SupplyChainHelper.init()
       //let self = this
+      var instance = await SupplyChainHelper.init()
       console.log('Working')
-
       var success = await SupplyChainHelper.createPackage(
+        instance,
         this.form.packageName,
         this.form.senderName,
         this.form.receiverName,
