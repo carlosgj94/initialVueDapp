@@ -10,6 +10,7 @@
 </template>
 <script>
 import TopBar from '~/components/TopBar.vue'
+import SupplyChainHelper from '~/helpers/SupplyChain.js'
 
 export default {
   components: {
@@ -17,6 +18,14 @@ export default {
   },
   head: {
     title: 'Campaigns'
+  },
+  mounted() {
+    this.getAddress()
+  },
+  methods: {
+    async getAddress() {
+      await SupplyChainHelper.init()
+    }
   }
 }
 </script>

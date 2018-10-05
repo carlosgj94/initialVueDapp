@@ -1,7 +1,7 @@
 import contract from 'truffle-contract'
-import BasicVoteReveal from '@contracts/BasicVoteReveal.json'
+var SupplyChain = require('../../build/contracts/SupplyChain.json')
 
-const GuessHelper = {
+const SupplyChainHelper = {
   contract: null,
 
   instance: null,
@@ -15,7 +15,7 @@ const GuessHelper = {
     let self = this
 
     return new Promise(function(resolve, reject) {
-      self.contract = contract(BasicVoteReveal)
+      self.contract = contract(SupplyChain)
       self.contract.setProvider(window.web3.currentProvider)
 
       self.contract
@@ -31,6 +31,7 @@ const GuessHelper = {
               console.log(error)
             } else {
               self.address = accounts
+              console.log(accounts)
               resolve()
             }
           })
@@ -52,24 +53,21 @@ const GuessHelper = {
     })
   },*/
 
-  getPollStrings: async (index) => {
+  getPackageStrings: async index => {
     let self = this
 
-    await self.instance.getGuess
-      .call(index)
-      .then(guess => {
-        resolve([
-          guess[0], // title
-          guess[1], // description
-          window.web3.utils.hexToUtf8(guess[2]), // topic
-          guess[3], // creator
-          new Date(guess[4].c[0] * 1000), // the day it started
-          new Date(guess[5].c[0] * 1000) // the final date
-        ])
-      })
-  })
-},
+    await self.instance.getPackageStrings.call(index).then(box => {
+      return [
+        box[0], // package name
+        box[1], // sender name
+        box[2], // receiver name
+        box[3], // origin address
+        box[4] // final address
+      ]
+    })
+  }
 
+  /*
   voteGuess: function(_guessIndex, _option, ethAmount) { // Option has to be between 1 and 2
     let self = this
 
@@ -90,6 +88,7 @@ const GuessHelper = {
         })
     })
   }
+  */
 }
 
-export default GuessHelper
+export default SupplyChainHelper

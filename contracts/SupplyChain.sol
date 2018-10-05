@@ -8,6 +8,7 @@ contract SupplyChain {
         address[9] transporters;
         string packageName;
         string senderName;
+        string receiverName;
         string originAddress;
         string finalAddress;
     }
@@ -21,12 +22,14 @@ contract SupplyChain {
         string,
         string,
         string,
+        string,
         string
     )
     {
         return (
             packages[_package].packageName,
             packages[_package].senderName,
+            packages[_package].receiverName,
             packages[_package].originAddress,
             packages[_package].finalAddress
         );
@@ -51,6 +54,7 @@ contract SupplyChain {
     function createPackage(
         string _packageName,
         string _senderName,
+        string _receiverName,
         string _originAddress,
         string _finalAddress,
         address _receiver
@@ -62,11 +66,12 @@ contract SupplyChain {
             transporters: _transporters,
             packageName: _packageName,
             senderName: _senderName,
+            receiverName: _receiverName,
             originAddress: _originAddress,
             finalAddress: _finalAddress
         });
 
-        packages.push(_package);
+        return packages.push(_package);
     }
 
     function addTransporter(uint _package, uint _pos) public {
