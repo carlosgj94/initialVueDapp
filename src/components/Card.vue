@@ -2,7 +2,7 @@
   <div class="card">
     <header class="card-header">
       <p class="card-header-title">
-        Component
+        🦄 🦄 Component 🦄 🦄
       </p>
     </header>
     <div class="card-content">
@@ -31,6 +31,10 @@
   margin-left: 15px;
 }
 
+.card-content {
+  background-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+}
+
 .card-header {
   background-image: linear-gradient(
     120deg,
@@ -50,6 +54,12 @@
   margin-left: 2.5%;
 }
 
+.card-header:hover {
+  max-height: 60%;
+  min-width: 97.5%;
+  margin-left: 1.25%;
+}
+
 .card-content {
   padding-top: 50px;
   border-color: #fdcbf1;
@@ -57,5 +67,15 @@
 
 a {
   color: #f83acc;
+}
+
+.card-footer-item:hover {
+  color: #ffffff;
+  background-image: linear-gradient(
+    120deg,
+    #cceeff 0%,
+    #fdcbf1 60%,
+    #fdcbf1 100%
+  );
 }
 </style>

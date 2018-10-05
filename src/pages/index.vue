@@ -81,4 +81,14 @@ export default {
 .row {
   padding: 10px;
 }
+
+.is-primary {
+  border-color: coral;
+  background-image: linear-gradient(
+    120deg,
+    #fdcbf1 0%,
+    #fdcbf1 60%,
+    #cceeff 100%
+  );
+}
 </style>
