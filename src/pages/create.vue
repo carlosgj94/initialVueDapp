@@ -2,7 +2,7 @@
   <section class="hero is-fullheight has-background-light">
 
     <div id="create.form" class="container columns is-fluid widescreen" style="margin-top: 50px">
-      <div class="column is-8 is-offset-2 card-content has-background-white">
+      <div class="column is-8 is-offset-2 card-content has-background-white" style="padding-top: 50px; padding-bottom: 30px">
         <div class="columns">
           <div class="column is-10 is-offset-1 wrap" style="padding: 20px">
 
