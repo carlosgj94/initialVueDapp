@@ -97,7 +97,7 @@ export default {
     },
     async addTransporter() {
       console.log(this.pack.transporters.length)
-      await this.$store.dispatch('supplyChain/getPackageData', {
+      await this.$store.dispatch('supplyChain/addTransporter', {
         packageNum: 0,
         position: this.pack.transporters.length
       })

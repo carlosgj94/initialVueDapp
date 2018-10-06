@@ -21,6 +21,14 @@
             New package
           </nuxt-link>
         </a>
+
+        <div class="navbar-divider"/>
+
+        <a class="navbar-item">
+          <nuxt-link class="button is-black" to="/transportui">
+            TransporterUI
+          </nuxt-link>
+        </a>
       </div>
 
     </div>
