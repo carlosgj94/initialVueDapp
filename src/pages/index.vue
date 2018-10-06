@@ -2,7 +2,12 @@
   <section class="hero is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
+        <h1 class="title">
+          <strong>
+            <img class="image is-48x48" src="~/assets/bike-parking.svg" style="margin-left:46px">
+            <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
+          </strong>
+        </h1>
         <p>
           <span class="is-primary">// Making the World a Better Place //</span>
         </p>
@@ -58,7 +63,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.cyanlogo {
+  color: #00ffff;
+}
 /*
 .container {
   min-height: 100vh;
@@ -102,16 +110,6 @@ export default {
 
 .row {
   padding: 10px;
-}
-
-.is-primary {
-  border-color: coral;
-  background-image: linear-gradient(
-    120deg,
-    #fdcbf1 0%,
-    #fdcbf1 60%,
-    #cceeff 100%
-  );
 }
 */
 </style>

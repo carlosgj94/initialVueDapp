@@ -29,7 +29,7 @@
 
             <br>
             <div class="control">
-              <button class="button is-primary" @click="submit">Register</button>
+              <button class="button is-info" @click="submit">Register</button>
             </div>
 
           </div>
