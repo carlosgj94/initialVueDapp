@@ -63,7 +63,8 @@ export default {
         originAddress: 'Here',
         destinationAddress: 'There',
         style: ''
-      }
+      },
+      boxes: []
     }
   },
   mounted() {
@@ -102,6 +103,13 @@ export default {
         { index: boxId - 1 }
       )
       console.log(this.tokenName)
+      this.boxes.push({
+        name: this.tokenName[0],
+        senderName: this.tokenName[1],
+        receiverName: this.tokenName[2],
+        originAddress: this.tokenName[3],
+        destinationAddress: this.tokenName[4]
+      })
     }
   }
 }
