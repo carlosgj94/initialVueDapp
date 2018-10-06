@@ -4,9 +4,9 @@
       <div class="container">
         <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
         <span class="is-primary">// Making the World a Better Place //</span>
-        <div v-if="scanning">
+        <div v-if="scanned">
           <no-ssr placeholder="loading...">
-            <qrcode-reader @decode="onDecode"/>
+            <qrcode-reader :paused="scanned" @decode="onDecode"/>
           </no-ssr>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default {
       transferReceipt: '',
       amount: 0,
       itemFalse: false,
-      scanning: true
+      scanned: false
     }
   },
   mounted() {
@@ -37,15 +37,12 @@ export default {
     this.$on('codearrived', section => {
       console.log(section)
     })
-    setTimeout(function() {
-      console.log('hola')
-      this.scanning = false
-    }, 2000)
   },
   methods: {
     onDecode(decodedString) {
       console.log(decodedString)
       this.addTransporter(decodedString)
+      this.scanned = true
     },
     async getAddress() {
       this.tokenName = await this.$store.dispatch(
