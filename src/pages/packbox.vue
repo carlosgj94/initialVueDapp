@@ -5,11 +5,11 @@
       <div v-for="i in counter" :key="i" class="tile is-ancestor">
         <div v-for="c in counter" :key="c" class="tile is-parent" >
           <article :class="randomStyle()" class="tile is-child box">
-            <div class="content">
-              <div class="title has-text-white-bis"> {{ pack.name }} Nº {{ i }}.{{ c }} </div>
-              <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ pack.senderName }} </span>
+            <div v-if="3*i+c < boxesLength" class="content">
+              <div class="title has-text-white-bis"> {{ boxes[3*i+c].name }} </div>
+              <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ boxes[3*i+c].senderName }} </span>
               <br>
-              <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ pack.receiverName }} </span>
+              <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ boxes[3*i+c].receiverName }} </span>
             </div>
             <button class="button is-white is-outlined" @click="isModalActive = true">More<strong>+</strong></button>
           </article>
@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      counter: [1, 2, 3],
+      counter: [0, 1, 2],
       variations: ['primary', 'info', 'link', 'success', 'danger'],
       isModalActive: false,
       pack: {
@@ -63,7 +63,9 @@ export default {
         originAddress: 'Here',
         destinationAddress: 'There',
         style: ''
-      }
+      },
+      boxes: [],
+      boxesLength: 0
     }
   },
   mounted() {
@@ -102,6 +104,14 @@ export default {
         { index: boxId - 1 }
       )
       console.log(this.tokenName)
+      this.boxes.push({
+        name: this.tokenName[0],
+        senderName: this.tokenName[1],
+        receiverName: this.tokenName[2],
+        originAddress: this.tokenName[3],
+        destinationAddress: this.tokenName[4]
+      })
+      this.boxesLength = this.boxes.length
     }
   }
 }
