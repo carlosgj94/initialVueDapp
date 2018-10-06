@@ -3,7 +3,7 @@ import SupplyChain from '../../build/contracts/SupplyChain'
 // import web3Abi from 'web3-eth-abi'
 
 // PI CAMBIA ESTO TODO EL PUTO RATO
-const tokenAddress = '0x5d32cb6614c062523ff1cfc0fcbf30d6b6c85579' // insert deployed EIP20 token address here
+const tokenAddress = '0xaebD100C7Ea4b185947205046Bb29a8a036e40f1' // insert deployed EIP20 token address here
 const sp = new web3.eth.Contract(SupplyChain.abi, tokenAddress)
 
 let account
