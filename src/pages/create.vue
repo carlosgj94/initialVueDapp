@@ -40,6 +40,7 @@
 </template>
 <script>
 // import SupplyChainHelper from '../helpers/SupplyChain.js'
+import Gun from 'gun/gun'
 
 export default {
   components: {},
@@ -64,6 +65,14 @@ export default {
   methods: {
     async submit() {
       //let self = this
+      this.number = this.$store.dispatch('supplyChain/callCreatePackage', {
+        packageName: this.form.packageName,
+        senderName: this.form.senderName,
+        receiverName: this.form.receiverName,
+        originAddress: this.form.originAddress,
+        finalAddress: this.form.destinationAddress,
+        receiver: this.form.receiver
+      })
       this.transferReceipt = await this.$store.dispatch(
         'supplyChain/transfer',
         {
@@ -75,6 +84,9 @@ export default {
           receiver: this.form.receiver
         }
       )
+      console.log(this.number)
+      var gun = Gun()
+      gun.get('boxes').put({ box: await this.number })
     }
   }
 }
