@@ -5,6 +5,11 @@
         <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
         <p>
           <span class="is-primary">// Making the World a Better Place //</span>
+          <!--
+          <no-ssr> 
+            <vue-qr-reader @:code-scanned="codeArrived"/>
+          </no-ssr> 
+          -->
         </p>
       </div>
     </div>
@@ -14,15 +19,21 @@
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
 import Gun from 'gun/gun'
+import NoSSR from 'vue-no-ssr'
+import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 
 export default {
-  components: {},
+  components: {
+    'no-ssr': NoSSR,
+    VueQrReader
+  },
   data() {
     return {
       tokenName: '',
       recipentAddress: '',
       transferReceipt: '',
-      amount: 0
+      amount: 0,
+      itemFalse: false
     }
   },
   mounted() {
@@ -30,6 +41,10 @@ export default {
     this.getBoxes()
   },
   methods: {
+    codeArrived(code) {
+      console.log('hola')
+      console.log(code)
+    },
     async getAddress() {
       this.tokenName = await this.$store.dispatch(
         'supplyChain/getPackageStrings',

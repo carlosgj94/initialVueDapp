@@ -23,7 +23,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['web3'],
+    vendor: ['web3', 'vue-qr-reader'],
     /*
      ** Run ESLint on save
      */

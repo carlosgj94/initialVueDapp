@@ -6,7 +6,8 @@
           <div class="tile is-parent">
             <div class="tile is-child box">
               <b-field>
-                <b-input placeholder="Search..."
+                <b-input v-model="index"
+                         placeholder="Search..."
                          type="search"
                          icon="magnify"
                          expanded
@@ -74,7 +75,7 @@ export default {
 
       this.packNames = await this.$store.dispatch(
         'supplyChain/getPackageStrings',
-        { index: 0 }
+        { index: this.index }
       )
       this.pack.name = this.packNames[0]
       this.pack.senderName = this.packNames[1]
@@ -86,7 +87,7 @@ export default {
     },
     async checkState() {
       this.packData = await this.$store.dispatch('supplyChain/getPackageData', {
-        index: 0
+        index: this.index
       })
       this.receiver = this.packData[1]
       this.pack.transporters = this.packData[2]
@@ -98,8 +99,8 @@ export default {
     async addTransporter() {
       console.log(this.pack.transporters.length)
       await this.$store.dispatch('supplyChain/addTransporter', {
-        packageNum: 0,
-        position: this.pack.transporters.length
+        packageNum: this.index,
+        position: 0
       })
     }
   }
