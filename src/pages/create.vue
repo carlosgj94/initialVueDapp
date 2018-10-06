@@ -85,8 +85,10 @@ export default {
         }
       )
       console.log(this.number)
+      console.log(this.$store.dispatch('supplyChain/getAccount'))
       var gun = Gun()
-      gun.get('boxes').put({ box: await this.number })
+      var boxes = gun.get(await this.$store.dispatch('supplyChain/getAccount'))
+      boxes.set({ box: await this.number })
     }
   }
 }
