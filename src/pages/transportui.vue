@@ -12,7 +12,7 @@
                          expanded
                 />
                 <p class="control">
-                  <button class="button is-primary">Search</button>
+                  <button class="button is-primary" @click="searchReveal">Search</button>
                 </p>
               </b-field> 
             </div>
@@ -29,7 +29,7 @@
                   <hr>
                   <span class="subtitle"><strong>To:</strong> {{ pack.receiverName }} </span>
                   <br>
-                  <span class="subtitle"><strong>Adr:</strong> {{ pack.originAddress }} </span>
+                  <span class="subtitle"><strong>Adr:</strong> {{ pack.destinationAddress }} </span>
                   <p class="image" style="padding-top: 20px">
                     <img src="~/assets/Map.png" alt="Map_Mockup">
                   </p>
@@ -65,8 +65,31 @@ export default {
         receiverName: 'You',
         originAddress: 'Here',
         destinationAddress: 'There',
-        style: ''
+        state: ''
       }
+    }
+  },
+  methods: {
+    async searchReveal() {
+      //let self = this
+
+      this.packNames = await this.$store.dispatch(
+        'supplyChain/getPackageStrings',
+        { index: 0 }
+      )
+      this.pack.name = this.packNames[0]
+      this.pack.senderName = this.packNames[1]
+      this.pack.receiverName = this.packNames[2]
+      this.pack.originAddress = this.packNames[3]
+      this.pack.destinationAddress = this.packNames[4]
+      this.pack.state = await this.checkState()
+      console.log(this.pack.state)
+    },
+    async checkState() {
+      this.packData = await this.$store.dispatch('supplyChain/getPackageData', {
+        index: 0
+      })
+      console.log(this.packData)
     }
   }
 }
