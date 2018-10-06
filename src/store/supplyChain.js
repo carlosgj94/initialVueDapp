@@ -37,37 +37,17 @@ export const actions = {
     )
     await receipt.send({ from: account, to: tokenAddress })
     console.log(receipt)
-    /*
-    const createPackageMethod = sp.abi.find(method => {
-      return method.name === 'createPackage'
-    })
 
-    const transferMethodTransactionData = web3Abi.encodeFunctionCall(
-      createPackageMethod,
-      [
-        params.packageName,
-        params.senderName,
-        params.receiverName,
-        params.originAddress,
-        params.finalAddress,
-        params.receiver
-      ]
+    return receipt
+  },
+
+  async addTransporter(context, params) {
+    const receipt = await sp.methods.addTransporter(
+      params.packageNum, // The number of the package
+      params.position // The position in the array for the new transporter
     )
-
-    const estimateGas = await web3.eth.estimateGas({
-      from: account,
-      to: tokenAddress,
-      data: transferMethodTransactionData
-    })
-
-    const receipt = await web3.eth.sendTransaction({
-      from: account,
-      to: tokenAddress,
-      data: transferMethodTransactionData,
-      value: 0,
-      gas: estimateGas
-    })
-    */
+    await receipt.send({ from: account, to: tokenAddress })
+    console.log(receipt)
 
     return receipt
   }
