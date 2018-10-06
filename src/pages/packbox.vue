@@ -6,10 +6,10 @@
         <div v-for="c in counter" :key="c" class="tile is-parent" >
           <article :class="randomStyle()" class="tile is-child box">
             <div v-if="3*i+c < boxesLength" class="content">
-              <div class="title has-text-white-bis"> {{ boxes[0].name }} </div>
+              <div class="title has-text-white-bis"> {{ boxes[3*i+c].name }} </div>
               <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ boxes[3*i+c].senderName }} </span>
               <br>
-              <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ boxes[0].receiverName }} </span>
+              <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ boxes[3*i+c].receiverName }} </span>
             </div>
             <button class="button is-white is-outlined" @click="isModalActive = true">More<strong>+</strong></button>
           </article>
