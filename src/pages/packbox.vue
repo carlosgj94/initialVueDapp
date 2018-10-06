@@ -44,6 +44,8 @@
   </section>
 </template>
 <script>
+import Gun from 'gun/gun'
+
 export default {
   components: {},
   head: {
@@ -66,10 +68,11 @@ export default {
   },
   mounted() {
     this.randomStyle()
+    this.getBoxes()
   },
   methods: {
     randomStyle() {
-      //let self = this
+      let self = this
 
       var randomValue = this.variations[
         Math.floor(Math.random() * this.variations.length)
@@ -79,6 +82,26 @@ export default {
     },
     something() {
       console.log('Package recieved')
+    },
+    async getBoxes() {
+      let self = this
+      this.address = await this.$store.dispatch('supplyChain/getAccount')
+      var gun = Gun()
+      console.log(await this.address)
+      gun
+        .get(this.address)
+        .map()
+        .once(function(data) {
+          self.getBox(data.box)
+        })
+    },
+
+    async getBox(boxId) {
+      this.tokenName = await this.$store.dispatch(
+        'supplyChain/getPackageStrings',
+        { index: boxId - 1 }
+      )
+      console.log(this.tokenName)
     }
   }
 }
