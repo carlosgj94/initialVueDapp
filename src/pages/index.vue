@@ -5,11 +5,12 @@
         <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
         <p>
           <span class="is-primary">// Making the World a Better Place //</span>
-          <!--
           <no-ssr> 
-            <vue-qr-reader @:code-scanned="codeArrived"/>
+            <vue-qr-reader 
+              :stop-on-scanned="false" 
+              :draw-on-found="true" :responsive="false"
+              @:code-scanned="codearrived"/>
           </no-ssr> 
-          -->
         </p>
       </div>
     </div>
@@ -33,17 +34,23 @@ export default {
       recipentAddress: '',
       transferReceipt: '',
       amount: 0,
-      itemFalse: false
+      itemFalse: false,
+      scanned: false
     }
   },
   mounted() {
     this.getAddress()
     this.getBoxes()
+    this.$on('codearrived', section => {
+      console.log(section)
+    })
   },
   methods: {
-    codeArrived(code) {
+    codescanned() {
       console.log('hola')
-      console.log(code)
+    },
+    codearrived() {
+      console.log('hola')
     },
     async getAddress() {
       this.tokenName = await this.$store.dispatch(
