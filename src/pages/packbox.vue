@@ -6,7 +6,7 @@
         <div v-for="c in counter" :key="c" class="tile is-parent" >
           <article :class="randomStyle()" class="tile is-child box">
             <div class="content">
-              <div class="title has-text-white-bis"> {{ pack.name }} Nº {{ c }} </div>
+              <div class="title has-text-white-bis"> {{ pack.name }} Nº {{ i }}.{{ c }} </div>
               <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ pack.senderName }} </span>
               <br>
               <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ pack.receiverName }} </span>
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     randomStyle() {
-      //let self = this
+      let self = this
 
       var randomValue = this.variations[
         Math.floor(Math.random() * this.variations.length)
