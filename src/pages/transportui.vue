@@ -34,7 +34,7 @@
                     <img src="~/assets/Map.png" alt="Map_Mockup">
                   </p>
                   <div>
-                    <button class="button level-item is-primary is-outlined is-big">Add TrackPoint</button>
+                    <button class="button level-item is-primary is-outlined is-big" @click="addTransporter">Add TrackPoint</button>
                   </div>
                 </div>
                 <div v-else class="has-text-centered">
@@ -56,15 +56,14 @@ export default {
   },
   data() {
     return {
-      counter: [1, 2, 3],
-      variations: ['primary', 'info', 'link', 'success', 'danger'],
-      isModalActive: false,
+      index: '',
       pack: {
         name: '',
         senderName: 'Me',
         receiverName: 'You',
         originAddress: 'Here',
         destinationAddress: 'There',
+        transporters: '',
         state: ''
       }
     }
@@ -89,7 +88,19 @@ export default {
       this.packData = await this.$store.dispatch('supplyChain/getPackageData', {
         index: 0
       })
-      console.log(this.packData)
+      this.receiver = this.packData[1]
+      this.pack.transporters = this.packData[2]
+      return (
+        this.receiver ===
+        this.pack.transporters[this.pack.transporters.length - 1]
+      )
+    },
+    async addTransporter() {
+      console.log(this.pack.transporters.length)
+      await this.$store.dispatch('supplyChain/getPackageData', {
+        packageNum: 0,
+        position: this.pack.transporters.length
+      })
     }
   }
 }
