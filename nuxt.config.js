@@ -23,7 +23,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['web3', 'vue-qr-reader'],
+    vendor: ['web3', 'vue-qr-reader', 'vue-qrcode-reader'],
     /*
      ** Run ESLint on save
      */
@@ -38,6 +38,7 @@ module.exports = {
       }
     }
   },
+  plugins: [{ src: '~/plugins/externalVueQRCodeReader.js', ssr: false }],
   modules: ['nuxt-buefy'],
   srcDir: 'src/',
   rootDir: './'

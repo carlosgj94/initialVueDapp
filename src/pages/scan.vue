@@ -3,9 +3,12 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
-        <p>
-          <span class="is-primary">// Making the World a Better Place //</span>
-        </p>
+        <span class="is-primary">// Making the World a Better Place //</span>
+        <div v-if="scanning">
+          <no-ssr placeholder="loading...">
+            <qrcode-reader @decode="onDecode"/>
+          </no-ssr>
+        </div>
       </div>
     </div>
   </section>
@@ -14,6 +17,7 @@
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
 import Gun from 'gun/gun'
+// import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 
 export default {
   components: {},
@@ -24,7 +28,7 @@ export default {
       transferReceipt: '',
       amount: 0,
       itemFalse: false,
-      scanned: false
+      scanning: true
     }
   },
   mounted() {
@@ -33,8 +37,16 @@ export default {
     this.$on('codearrived', section => {
       console.log(section)
     })
+    setTimeout(function() {
+      console.log('hola')
+      this.scanning = false
+    }, 2000)
   },
   methods: {
+    onDecode(decodedString) {
+      console.log(decodedString)
+      this.addTransporter(decodedString)
+    },
     async getAddress() {
       this.tokenName = await this.$store.dispatch(
         'supplyChain/getPackageStrings',
@@ -53,6 +65,26 @@ export default {
         .once(function(data, key) {
           console.log(data, key)
         })
+    },
+    async addTransporter(_index) {
+      console.log(_index)
+      let packData = await this.$store.dispatch('supplyChain/getPackageData', {
+        index: _index
+      })
+
+      let transporters = packData[2]
+      var counter = 0
+      while (
+        transporters[counter] != '0x0000000000000000000000000000000000000000' &&
+        counter < 10
+      )
+        counter++
+
+      console.log(counter)
+      await this.$store.dispatch('supplyChain/addTransporter', {
+        packageNum: _index,
+        position: counter
+      })
     }
   }
 }
