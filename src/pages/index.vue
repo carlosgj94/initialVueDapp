@@ -13,6 +13,7 @@
 
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
+import Gun from 'gun/gun'
 
 export default {
   components: {},
@@ -26,6 +27,7 @@ export default {
   },
   mounted() {
     this.getAddress()
+    this.getBoxes()
   },
   methods: {
     async getAddress() {
@@ -34,6 +36,18 @@ export default {
         { index: 0 }
       )
       console.log(await this.tokenName)
+    },
+
+    async getBoxes() {
+      this.address = await this.$store.dispatch('supplyChain/getAccount')
+      var gun = Gun()
+      console.log(await this.address)
+      gun
+        .get(this.address)
+        .map()
+        .once(function(data, key) {
+          console.log(data, key)
+        })
     }
   }
 }

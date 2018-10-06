@@ -16,6 +16,9 @@ export const state = () => ({})
 export const mutations = {}
 
 export const actions = {
+  getAccount() {
+    return account
+  },
   getPackageStrings(context, params) {
     return sp.methods
       .getPackageStrings(params.index)
