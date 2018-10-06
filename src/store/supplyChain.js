@@ -26,6 +26,19 @@ export const actions = {
       .getPackageData(params.index)
       .call({ from: account, to: tokenAddress })
   },
+  callCreatePackage(context, params) {
+    const receipt = sp.methods
+      .createPackage(
+        params.packageName,
+        params.senderName,
+        params.receiverName,
+        params.originAddress,
+        params.finalAddress,
+        params.receiver
+      )
+      .call({ from: account, to: tokenAddress })
+    return receipt
+  },
   async transfer(context, params) {
     const receipt = await sp.methods.createPackage(
       params.packageName,

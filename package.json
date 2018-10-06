@@ -14,6 +14,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "gun": "^0.9.99996",
     "nuxt": "^1.0.0",
     "nuxt-buefy": "^0.2.3",
     "truffle-contract": "^3.0.6",
