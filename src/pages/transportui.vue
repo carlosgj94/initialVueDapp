@@ -13,7 +13,7 @@
                          expanded
                 />
                 <p class="control">
-                  <button class="button is-primary" @click="searchReveal">Search</button>
+                  <button class="button is-info" @click="searchReveal">Search</button>
                 </p>
               </b-field> 
             </div>
@@ -35,11 +35,11 @@
                     <img src="~/assets/Map.png" alt="Map_Mockup">
                   </p>
                   <div>
-                    <button class="button level-item is-primary is-outlined is-big" @click="addTransporter">Add TrackPoint</button>
+                    <button class="button level-item is-info is-outlined is-big" @click="addTransporter">Add TrackPoint</button>
                   </div>
                 </div>
                 <div v-else class="has-text-centered">
-                  TRACKING <b-icon icon="map" size="is-large" type="is-primary"/> PACKAGE
+                  TRACKING <b-icon icon="map" size="is-large" type="is-info"/> PACKAGE
                 </div>
               </div>
             </article>
