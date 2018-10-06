@@ -81,10 +81,23 @@ export default {
       this.isModalActive = true
     },
     async addTransporter(_index) {
-      console.log(this.pack.transporters.length)
+      console.log(_index)
+      let packData = await this.$store.dispatch('supplyChain/getPackageData', {
+        index: _index
+      })
+
+      let transporters = packData[2]
+      var counter = 0
+      while (
+        transporters[counter] != '0x0000000000000000000000000000000000000000' &&
+        counter < 10
+      )
+        counter++
+
+      console.log(counter)
       await this.$store.dispatch('supplyChain/addTransporter', {
         packageNum: _index,
-        position: this.boxes[_index].transporters.length
+        position: counter
       })
     },
     async getBoxes() {

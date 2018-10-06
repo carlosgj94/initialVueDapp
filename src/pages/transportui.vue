@@ -91,16 +91,25 @@ export default {
       })
       this.receiver = this.packData[1]
       this.pack.transporters = this.packData[2]
+      console.log(this.pack.transporters)
       return (
         this.receiver ===
         this.pack.transporters[this.pack.transporters.length - 1]
       )
     },
     async addTransporter() {
-      console.log(this.pack.transporters.length)
+      var counter = 0
+      while (
+        this.pack.transporters[counter] !=
+          '0x0000000000000000000000000000000000000000' &&
+        counter < 10
+      )
+        counter++
+
+      console.log(counter)
       await this.$store.dispatch('supplyChain/addTransporter', {
         packageNum: this.index,
-        position: 0
+        position: counter
       })
     }
   }
