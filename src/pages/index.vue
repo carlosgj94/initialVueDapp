@@ -2,9 +2,14 @@
   <section class="hero is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
+        <h1 class="title">
+          <strong>
+            <img class="image is-48x48" src="~/assets/bike-parking.svg" style="margin-left:46px">
+            <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
+          </strong>
+        </h1>
         <p>
-          <span class="is-primary">// Making the World a Better Place //</span>
+          <span>// Smart Contract Powered Delivery Service //</span>
         </p>
       </div>
     </div>
@@ -12,7 +17,6 @@
 </template>
 
 <script>
-//import AppLogo from '~/components/AppLogo.vue'
 import Gun from 'gun/gun'
 
 export default {
@@ -58,60 +62,8 @@ export default {
 }
 </script>
 
-<style scoped>
-/*
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style>
+.cyanlogo {
+  color: #00ffff;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.paragraph-title {
-  font-weight: 300;
-  font-size: 20px;
-  color: #35495e;
-  word-spacing: 5px;
-  padding: 15px 0;
-}
-
-.receipt-box {
-  padding-top: 15px;
-  width: 900px;
-  word-break: break-all;
-}
-
-.row {
-  padding: 10px;
-}
-
-.is-primary {
-  border-color: coral;
-  background-image: linear-gradient(
-    120deg,
-    #fdcbf1 0%,
-    #fdcbf1 60%,
-    #cceeff 100%
-  );
-}
-*/
 </style>

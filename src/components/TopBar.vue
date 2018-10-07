@@ -2,8 +2,14 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <span class="navbar-item">
-        <b-icon icon="package" size="is-medium" type="is-primary"/>
-        <h1><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
+        <img class="image is-36x36" src="~/assets/bike-parking.svg">
+        <nuxt-link to="/">
+          <h1>
+            <strong>
+              <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
+            </strong>
+          </h1>
+        </nuxt-link>
       </span>
       <!--TODO: HAMBURGER-->
     </div>
@@ -17,7 +23,7 @@
         </div>
 
         <a class="navbar-item">
-          <nuxt-link class="button is-primary" to="/create">
+          <nuxt-link class="button is-info" to="/create">
             New package
           </nuxt-link>
         </a>
@@ -26,7 +32,7 @@
 
         <a class="navbar-item">
           <nuxt-link class="button is-black" to="/transportui">
-            TransporterUI
+            Transporter
           </nuxt-link>
         </a>
       </div>
@@ -36,5 +42,8 @@
 </template>
 <script>
 </script>
-<style scoped>
+<style>
+.cyanlogo {
+  color: #00ffff;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <section class="hero is-fullheight has-background-light">
 
-    <div id="create.form" class="container columns is-fluid widescreen" style="margin-top: 50px">
+    <div id="create.form" class="container hero-body columns is-fluid widescreen">
       <div class="column is-8 is-offset-2 card-content has-background-white" style="padding-top: 50px; padding-bottom: 30px">
         <div class="columns">
           <div class="column is-10 is-offset-1 wrap" style="padding: 20px">
@@ -29,7 +29,7 @@
 
             <br>
             <div class="control">
-              <button class="button is-primary" @click="submit">Register</button>
+              <button class="button is-info" @click="submit">Register</button>
             </div>
 
           </div>

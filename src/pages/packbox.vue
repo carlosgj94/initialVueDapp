@@ -30,11 +30,35 @@
               <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ boxes[mIndex].receiverName }} </span>
               <br>
               <span class="subtitle has-text-white-bis"><strong>Adr:</strong> {{ boxes[mIndex].destinationAddress }} </span>
-              <p class="image" style="padding-top: 20px">
-                <img src="~/assets/Map.png" alt="Map_Mockup">
-              </p>
+              <div style="margin-top:20px">
+                <div class="field">
+                  <b-switch v-model="isSwitched" type="is-warning"/>
+                </div>
+                <div v-if="isSwitched" class="image">
+                  <img src="~/assets/Map.png" alt="Map_Mockup">
+                </div>
+                <div v-else class="tile is-ancestor is-vertical">
+                  <div class="tile is-parent is-vertical">
+                    <div v-if="boxes[mIndex].transporters.length > 0">
+                      <div v-for="a in boxes[mIndex].transporters" v-if="a != '0x0000000000000000000000000000000000000000' " :key="a" class="card has-text-centered" style="padding: 5px 0">
+                        <strong>
+                          {{ a }}
+                        </strong>
+                      </div>
+                    </div>
+                    <div v-else>
+                      <div class="card has-text-centered" style="padding: 5px 0">
+                        <strong>
+                          Not register address yet
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
               <div>
-                <button class="button level-item is-white is-outlined is-big" @click="addTransporter(mIndex)">Register Recievement</button>
+                <button class="button level-item is-white is-outlined is-big" @click="addTransporter(mIndex)">Register Reception</button>
               </div>
             </div>
           </article>
@@ -56,6 +80,7 @@ export default {
       counter: [0, 1, 2],
       variations: ['primary', 'info', 'link', 'success', 'danger'],
       isModalActive: false,
+      isSwitched: true,
       mIndex: '0',
       boxes: [],
       boxesLength: 0
@@ -75,9 +100,10 @@ export default {
       self.style = 'has-background-' + randomValue
       return self.style
     },
-    showModal(_index) {
+    async showModal(_index) {
       this.mIndex = _index
       console.log(this.mIndex)
+      self.control = await this.getBoxExtra(this.mIndex)
       this.isModalActive = true
     },
     async addTransporter(_index) {
@@ -118,25 +144,27 @@ export default {
         'supplyChain/getPackageStrings',
         { index: boxId - 1 }
       )
-      /*
-      this.tokenData = await this.$store.dispatch(
-        'supplyChain/getPackageData',
-        { index: boxId - 1 }
-      )
-      */
       console.log(this.tokenName)
       this.boxes.push({
         name: this.tokenName[0],
         senderName: this.tokenName[1],
-        //sender: this.tokenData[0],
+        sender: '',
         receiverName: this.tokenName[2],
-        //receiver: this.tokenData[1],
+        receiver: '',
         originAddress: this.tokenName[3],
         destinationAddress: this.tokenName[4],
-        //transporters: this.tokenData[2],
+        transporters: [],
         style: this.randomStyle()
       })
       this.boxesLength = this.boxes.length
+    },
+    async getBoxExtra(boxId) {
+      this.packData = await this.$store.dispatch('supplyChain/getPackageData', {
+        index: boxId
+      })
+      this.boxes[boxId].sender = this.packData[0]
+      this.boxes[boxId].receiver = this.packData[1]
+      this.boxes[boxId].transporters = this.packData[2]
     }
   }
 }
