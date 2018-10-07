@@ -9,7 +9,7 @@
           </strong>
         </h1>
         <p>
-          <span class="is-primary">// Making the World a Better Place //</span>
+          <span class="is-primary">// Smart Contract Powered Delivery Service //</span>
           <no-ssr> 
             <vue-qr-reader 
               :stop-on-scanned="false" 

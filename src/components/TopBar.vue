@@ -5,7 +5,9 @@
         <img class="image is-36x36" src="~/assets/bike-parking.svg">
         <h1>
           <strong>
-            <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
+            <nuxt-link to="/">
+              <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
+            </nuxt-link>
           </strong>
         </h1>
       </span>
@@ -30,7 +32,7 @@
 
         <a class="navbar-item">
           <nuxt-link class="button is-black" to="/transportui">
-            TransporterUI
+            Transporter
           </nuxt-link>
         </a>
       </div>
