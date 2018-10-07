@@ -4,6 +4,7 @@ import SupplyChain from '../../build/contracts/SupplyChain'
 
 // PI CAMBIA ESTO TODO EL PUTO RATO
 const tokenAddress = '0xa3490e8ccb43510d2a294306bd1fc8c290c407d1'
+const tokenAddress = '0x5fc26c404b58baa24c5c72fd590e0bee5edf93d1'
 const sp = new web3.eth.Contract(SupplyChain.abi, tokenAddress)
 
 let account

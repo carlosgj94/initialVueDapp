@@ -2,9 +2,7 @@
   <section class="hero is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
-        <span class="is-primary">// Making the World a Better Place //</span>
-        <div v-if="scanned">
+        <div v-if="scanning" class="has-background-white" style="padding: 20px">
           <no-ssr placeholder="loading...">
             <qrcode-reader :paused="scanned" @decode="onDecode"/>
           </no-ssr>

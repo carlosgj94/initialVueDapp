@@ -144,12 +144,6 @@ export default {
         'supplyChain/getPackageStrings',
         { index: boxId - 1 }
       )
-      /*
-      this.tokenData = await this.$store.dispatch(
-        'supplyChain/getPackageData',
-        { index: boxId - 1 }
-      )
-      */
       console.log(this.tokenName)
       this.boxes.push({
         name: this.tokenName[0],

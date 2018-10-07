@@ -9,7 +9,7 @@
           </strong>
         </h1>
         <p>
-          <span class="is-primary">// Smart Contract Powered Delivery Service //</span>
+          <span>// Smart Contract Powered Delivery Service //</span>
         </p>
       </div>
     </div>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-//import AppLogo from '~/components/AppLogo.vue'
 import Gun from 'gun/gun'
 
 export default {
@@ -66,6 +65,7 @@ export default {
 <style>
 .cyanlogo {
   color: #00ffff;
+<<<<<<< HEAD
 }
 /*
 .container {
@@ -112,4 +112,7 @@ export default {
   padding: 10px;
 }
 */
+=======
+}
+>>>>>>> fix
 </style>

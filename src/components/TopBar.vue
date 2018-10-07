@@ -3,13 +3,13 @@
     <div class="navbar-brand">
       <span class="navbar-item">
         <img class="image is-36x36" src="~/assets/bike-parking.svg">
-        <h1>
-          <strong>
-            <nuxt-link to="/">
+        <nuxt-link to="/">
+          <h1>
+            <strong>
               <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
-            </nuxt-link>
-          </strong>
-        </h1>
+            </strong>
+          </h1>
+        </nuxt-link>
       </span>
       <!--TODO: HAMBURGER-->
     </div>
