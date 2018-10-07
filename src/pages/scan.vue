@@ -2,15 +2,13 @@
   <section class="hero is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">
-          <strong>
-            <img class="image is-48x48" src="~/assets/bike-parking.svg" style="margin-left:46px">
-            <span class="cyanlogo">FAIR</span><span class="has-text-info">IVERY</span>
-          </strong>
-        </h1>
-        <p>
-          <span class="is-primary">// Smart Contract Powered Delivery Service //</span>
-        </p>
+        <h1 class="title"><b-icon icon="package" size="is-large" type="is-primary"/><strong><span class="has-text-primary">FAIR</span>IVERY</strong></h1>
+        <span class="is-primary">// Making the World a Better Place //</span>
+        <div v-if="scanned">
+          <no-ssr placeholder="loading...">
+            <qrcode-reader :paused="scanned" @decode="onDecode"/>
+          </no-ssr>
+        </div>
       </div>
     </div>
   </section>
@@ -19,6 +17,7 @@
 <script>
 //import AppLogo from '~/components/AppLogo.vue'
 import Gun from 'gun/gun'
+// import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js'
 
 export default {
   components: {},
@@ -40,6 +39,11 @@ export default {
     })
   },
   methods: {
+    onDecode(decodedString) {
+      console.log(decodedString)
+      this.addTransporter(decodedString)
+      this.scanned = true
+    },
     async getAddress() {
       this.tokenName = await this.$store.dispatch(
         'supplyChain/getPackageStrings',
@@ -58,15 +62,32 @@ export default {
         .once(function(data, key) {
           console.log(data, key)
         })
+    },
+    async addTransporter(_index) {
+      console.log(_index)
+      let packData = await this.$store.dispatch('supplyChain/getPackageData', {
+        index: _index
+      })
+
+      let transporters = packData[2]
+      var counter = 0
+      while (
+        transporters[counter] != '0x0000000000000000000000000000000000000000' &&
+        counter < 10
+      )
+        counter++
+
+      console.log(counter)
+      await this.$store.dispatch('supplyChain/addTransporter', {
+        packageNum: _index,
+        position: counter
+      })
     }
   }
 }
 </script>
 
-<style>
-.cyanlogo {
-  color: #00ffff;
-}
+<style scoped>
 /*
 .container {
   min-height: 100vh;
@@ -110,6 +131,16 @@ export default {
 
 .row {
   padding: 10px;
+}
+
+.is-primary {
+  border-color: coral;
+  background-image: linear-gradient(
+    120deg,
+    #fdcbf1 0%,
+    #fdcbf1 60%,
+    #cceeff 100%
+  );
 }
 */
 </style>
