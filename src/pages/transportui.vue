@@ -1,6 +1,6 @@
 <template>
   <section class="hero is-fullheight has-background-light">
-    <div id="transport.form" class="container columns is-fluid widescreen" style="margin-top: 50px">
+    <div id="transport.form" class="container columns is-fluid widescreen spacing-top">
       <div class="column is-6 is-offset-3">
         <div class="tile is-ancestor is-vertical">
           <div class="tile is-parent">
@@ -23,19 +23,30 @@
             <article class="tile is-child box has-background-white">
               <div class="content">
                 <div v-if="pack.name">
-                  <div class="title"> {{ pack.name }}</div>
-                  <span class="subtitle"><strong>From:</strong> {{ pack.senderName }} </span>
+                  <div class="title">{{ pack.name }}</div>
+                  <span class="subtitle">
+                    <strong>From:</strong> {{ pack.senderName }}
+                  </span>
                   <br>
-                  <span class="subtitle"><strong>Adr:</strong> {{ pack.originAddress }} </span>
+                  <span class="subtitle">
+                    <strong>Adr:</strong> {{ pack.originAddress }}
+                  </span>
                   <hr>
-                  <span class="subtitle"><strong>To:</strong> {{ pack.receiverName }} </span>
+                  <span class="subtitle">
+                    <strong>To:</strong> {{ pack.receiverName }}
+                  </span>
                   <br>
-                  <span class="subtitle"><strong>Adr:</strong> {{ pack.destinationAddress }} </span>
-                  <p class="image" style="padding-top: 20px">
+                  <span class="subtitle">
+                    <strong>Adr:</strong> {{ pack.destinationAddress }}
+                  </span>
+                  <p class="image spacing-top-20">
                     <img src="~/assets/Map.png" alt="Map_Mockup">
                   </p>
                   <div>
-                    <button class="button level-item is-info is-outlined is-big" @click="addTransporter">Add TrackPoint</button>
+                    <button class="button level-item is-info is-outlined is-big"
+                            @click="addTransporter">
+                      Add TrackPoint
+                    </button>
                   </div>
                 </div>
                 <div v-else class="has-text-centered">
@@ -53,7 +64,7 @@
 export default {
   components: {},
   head: {
-    title: 'fairivery/Transport Interface'
+    title: 'Fairivery/Transport Interface'
   },
   data() {
     return {
@@ -71,8 +82,6 @@ export default {
   },
   methods: {
     async searchReveal() {
-      //let self = this
-
       this.packNames = await this.$store.dispatch(
         'supplyChain/getPackageStrings',
         { index: this.index }
@@ -82,21 +91,29 @@ export default {
       this.pack.receiverName = this.packNames[2]
       this.pack.originAddress = this.packNames[3]
       this.pack.destinationAddress = this.packNames[4]
-      this.pack.state = await this.checkState()
-      console.log(this.pack.state)
+      //this.pack.state = await this.checkState()
+      //console.log(this.pack.state)
     },
+    /*
     async checkState() {
       this.packData = await this.$store.dispatch('supplyChain/getPackageData', {
         index: this.index
       })
       this.receiver = this.packData[1]
       this.pack.transporters = this.packData[2]
-      console.log(this.pack.transporters)
-      return (
-        this.receiver ===
-        this.pack.transporters[this.pack.transporters.length - 1]
+
+      var counter = 0
+      while (
+        this.pack.transporters[counter] !=
+          '0x0000000000000000000000000000000000000000' &&
+        counter < 10
       )
+        counter++
+      console.log(counter)
+      if (this.pack.transporter[counter - 1] == this.pack.sender)
+      //sender needed
     },
+    */
     async addTransporter() {
       var counter = 0
       while (
@@ -106,7 +123,6 @@ export default {
       )
         counter++
 
-      console.log(counter)
       await this.$store.dispatch('supplyChain/addTransporter', {
         packageNum: this.index,
         position: counter
@@ -115,3 +131,11 @@ export default {
   }
 }
 </script>
+<style>
+.spacing-top {
+  margin-top: 50px;
+}
+.spacing-top-20 {
+  margin-top: 20px;
+}
+</style>

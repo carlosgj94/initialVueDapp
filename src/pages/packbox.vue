@@ -1,7 +1,7 @@
 <template>
   <section class="hero is-fullheight has-background-light">
 
-    <div class="column is-10 is-offset-1 fluid" style="padding-top: 50px">
+    <div class="column is-10 is-offset-1 fluid spacing-top">
       <div v-for="i in counter" :key="i" class="tile is-ancestor">
         <div v-for="c in counter" v-if="3*i+c < boxesLength" :key="c" class="tile is-parent is-4" >
           <article :class="boxes[3*i+c].style" class="tile is-child box">
@@ -22,15 +22,25 @@
         <div class="tile is-parent" >
           <article :class="boxes[mIndex].style" class="tile is-child box">
             <div class="content">
-              <div class="title has-text-white-bis"> {{ boxes[mIndex].name }}</div>
-              <span class="subtitle has-text-white-bis"><strong>From:</strong> {{ boxes[mIndex].senderName }} </span>
+              <div class="title has-text-white-bis">
+                {{ boxes[mIndex].name }}
+              </div>
+              <span class="subtitle has-text-white-bis">
+                <strong>From:</strong> {{ boxes[mIndex].senderName }}
+              </span>
               <br>
-              <span class="subtitle has-text-white-bis"><strong>Adr:</strong> {{ boxes[mIndex].originAddress }} </span>
+              <span class="subtitle has-text-white-bis">
+                <strong>Adr:</strong> {{ boxes[mIndex].originAddress }}
+              </span>
               <hr>
-              <span class="subtitle has-text-white-bis"><strong>To:</strong> {{ boxes[mIndex].receiverName }} </span>
+              <span class="subtitle has-text-white-bis">
+                <strong>To:</strong> {{ boxes[mIndex].receiverName }}
+              </span>
               <br>
-              <span class="subtitle has-text-white-bis"><strong>Adr:</strong> {{ boxes[mIndex].destinationAddress }} </span>
-              <div style="margin-top:20px">
+              <span class="subtitle has-text-white-bis">
+                <strong>Adr:</strong> {{ boxes[mIndex].destinationAddress }}
+              </span>
+              <div class="spacing-top-20">
                 <div class="field">
                   <b-switch v-model="isSwitched" type="is-warning"/>
                 </div>
@@ -39,15 +49,19 @@
                 </div>
                 <div v-else class="tile is-ancestor is-vertical">
                   <div class="tile is-parent is-vertical">
-                    <div v-if="boxes[mIndex].transporters.length > 0">
-                      <div v-for="a in boxes[mIndex].transporters" v-if="a != '0x0000000000000000000000000000000000000000' " :key="a" class="card has-text-centered" style="padding: 5px 0">
+                    <h4>Trackpoints:</h4>
+                    <div v-if="boxes[mIndex].transportersCount > 0">
+                      <div v-for="a in boxes[mIndex].transporters"
+                           v-if="a != '0x0000000000000000000000000000000000000000'"
+                           :key="a"
+                           class="card address-tabs has-text-centered">
                         <strong>
                           {{ a }}
                         </strong>
                       </div>
                     </div>
                     <div v-else>
-                      <div class="card has-text-centered" style="padding: 5px 0">
+                      <div class="card address-tabs has-text-centered">
                         <strong>
                           Not register address yet
                         </strong>
@@ -102,12 +116,12 @@ export default {
     },
     async showModal(_index) {
       this.mIndex = _index
-      console.log(this.mIndex)
+      //console.log(this.mIndex)
       self.control = await this.getBoxExtra(this.mIndex)
       this.isModalActive = true
     },
     async addTransporter(_index) {
-      console.log(_index)
+      //console.log(_index)
       let packData = await this.$store.dispatch('supplyChain/getPackageData', {
         index: _index
       })
@@ -120,7 +134,6 @@ export default {
       )
         counter++
 
-      console.log(counter)
       await this.$store.dispatch('supplyChain/addTransporter', {
         packageNum: _index,
         position: counter
@@ -128,9 +141,10 @@ export default {
     },
     async getBoxes() {
       let self = this
+
       this.address = await this.$store.dispatch('supplyChain/getAccount')
       var gun = Gun()
-      console.log(await this.address)
+      //console.log('Current Address:', await this.address)
       gun
         .get(this.address)
         .map()
@@ -144,7 +158,7 @@ export default {
         'supplyChain/getPackageStrings',
         { index: boxId - 1 }
       )
-      console.log(this.tokenName)
+      // console.log(this.tokenName)
       this.boxes.push({
         name: this.tokenName[0],
         senderName: this.tokenName[1],
@@ -154,6 +168,7 @@ export default {
         originAddress: this.tokenName[3],
         destinationAddress: this.tokenName[4],
         transporters: [],
+        transportersCount: 0,
         style: this.randomStyle()
       })
       this.boxesLength = this.boxes.length
@@ -162,19 +177,31 @@ export default {
       this.packData = await this.$store.dispatch('supplyChain/getPackageData', {
         index: boxId
       })
+      this.transporters = this.packData[2]
+      var counter = 0
+      while (
+        this.transporters[counter] !=
+          '0x0000000000000000000000000000000000000000' &&
+        counter < 10
+      )
+        counter++
+
       this.boxes[boxId].sender = this.packData[0]
       this.boxes[boxId].receiver = this.packData[1]
       this.boxes[boxId].transporters = this.packData[2]
+      this.boxes[boxId].transportersCount = counter
     }
   }
 }
 </script>
 <style>
-.wrapper {
-  padding: 20px;
+.spacing-top {
+  margin-top: 50px;
 }
-.is-vertical-centered {
-  display: flex;
-  align-items: center;
+.spacing-top-20 {
+  margin-top: 20px;
+}
+.address-tabs {
+  padding: 5px 0;
 }
 </style>

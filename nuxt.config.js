@@ -10,15 +10,15 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Nuxt.js and web3 template project'
+        content: 'Smart Contract Powered Delivery Service'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: 'fairivery.ico' }]
   },
   /*
    ** Customize the progress bar color
    */
-  loading: { color: '#3B8070' },
+  loading: { color: '#00FFFF' },
   /*
    ** Build configuration
    */

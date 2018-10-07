@@ -2,9 +2,9 @@
   <section class="hero is-fullheight has-background-light">
 
     <div id="create.form" class="container hero-body columns is-fluid widescreen">
-      <div class="column is-8 is-offset-2 card-content has-background-white" style="padding-top: 50px; padding-bottom: 30px">
+      <div class="column is-8 is-offset-2 card-content form-wrapper has-background-white">
         <div class="columns">
-          <div class="column is-10 is-offset-1 wrap" style="padding: 20px">
+          <div class="column is-10 is-offset-1 form-padding">
 
             <b-field horizontal label="Package" custom-class="is-large">
               <b-input v-model="form.packageName" name="packageName" placeholder="Name your package" size="is-medium" expanded />
@@ -84,8 +84,6 @@ export default {
           receiver: this.form.receiver
         }
       )
-      console.log(this.number)
-      console.log(this.$store.dispatch('supplyChain/getAccount'))
       var gun = Gun()
       var boxes = gun.get(await this.$store.dispatch('supplyChain/getAccount'))
       boxes.set({ box: await this.number })
@@ -94,8 +92,7 @@ export default {
 }
 </script>
 <style scoped>
-.wrap {
-  padding: 20px;
-  backaground-color: blue;
+.form-wrapper {
+  padding: 50px 20px 30px 20px;
 }
 </style>
